@@ -1,0 +1,111 @@
+
+.navbar-blue {
+  background-color: #0099FF;
+}
+.navbar-blue .navbar-brand {
+  color: #fff;
+}
+.navbar-brand:hover,
+.navbar-brand:focus {
+  text-decoration: none;
+  color: #fff;
+}
+
+.navbar-blue .navbar-nav > li > a {
+  color: #fff;
+}
+.navbar-blue .navbar-nav > li > a:hover,
+.navbar-blue .navbar-nav > li > a:focus {
+  color: #fff;
+  background-color: transparent;
+}
+
+
+.navbar-blue .navbar-toggle:hover,
+.navbar-blue .navbar-toggle:focus {
+  
+   border-color: #fff;
+}
+.navbar-blue .navbar-toggle .icon-bar {
+  background-color: #fff;
+}
+.sidepanel{background-color:#b6b6b6; position: absolute; top: 50px; right: 0;  bottom: 0; width: 50%; *height: 100%; overflow: auto}
+.sidepanel-left{
+	background-color:#0099FF;
+	filter: alpha(opacity=100);
+	/* IE */
+  -moz-opacity: 1;
+	/* Mozilla */
+  opacity: 1;
+	/* CSS3 */
+  
+	position: absolute; 
+	top: 50px; 
+	left: 0;  
+	bottom: 0; 
+	width: 30%; *height: 100%; 
+	overflow: auto
+}
+
+
+.panel-title {
+  margin-top: 0;
+  margin-bottom: 0;
+  /*font-size: 16px;*/
+   font-size: 18px;
+  color: inherit;
+}
+
+.panel-primary .panel-title .badge {
+  color: #337ab7;
+  background-color: #fff;
+     font-size: 25px;
+
+}
+
+.panel-primary .panel-title a:hover, .panel-title a:focus {
+	text-decoration: none;
+}
+.panel-filter{
+	padding-left:20px;
+	border-:0;
+} 
+
+.panel-group .group-heading {
+  padding:5px 0  ;
+  min-height: 20px;
+  margin-bottom: 5px;
+  background-color: #f5f5f5; 
+   border:1px 0px;
+   border-color:#e3e3e3;   
+  border-radius: 4px;
+}
+
+#panelicon {
+  position: relative;
+  min-height: 1px;
+  width:5px;
+  padding: 0;
+  margin-right:15px;
+}
+
+#checkboxes { 
+	position: absolute; 
+	top: 50px; 
+	right: 10px;
+	font-family: 'arial', 'sans-serif'; 
+	font-size: 14px;
+	background-color: white;
+	border: 1px solid black;
+	padding: 10px 10px 0px 10px;
+}
+
+.img-circle {
+  border-radius: 50%;
+  height:20px;
+}
+.img-list {
+  border-radius: 6px;
+  height:16px;
+  width:16px;
+}

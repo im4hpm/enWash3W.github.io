@@ -1,0 +1,312 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1" >
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+	<meta name="description" content="">
+    <meta name="author" content="">  
+    <title>3W - Groupe Sectoriel WASH Maroua</title>
+
+  </head>
+  <body>
+    
+	<nav class="navbar navbar-blue">
+		 <div class="container-fluid">
+		  <!-- Brand and toggle get grouped for better mobile display -->
+			  <div class="navbar-header">
+			  <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbarcontent" aria-expanded="false">
+				<span class="sr-only">Toggle navigation</span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+				<span class="icon-bar"></span>
+			  </button>
+			  <a class="navbar-brand" href="#">CAMEROON - PARTNERS AND ACTIVITY MAPPING</a>
+			</div>
+			
+			<!-- Collect the nav links, forms, and other content for toggling -->
+			<div id="navbarcontent" class="collapse navbar-collapse" >
+				<ul class="nav navbar-nav navbar-right">
+					<li class="dropdown sr-only">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"> Region<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+						<li><a href="#">Extreme Nord</a></li>
+						</ul>
+						
+					</li>
+					<li class="dropdown  sr-only">
+						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Secteur<span class="caret"></span></a>
+						<ul class="dropdown-menu">
+							<li> <a href="#"> WASH</a></li>
+						</ul>
+					</li>
+					<li style="top:10px"><img src="img/UNICEF_logo_white.png" width="125" height="30" style="margin-left:10px;"></li>
+				</ul>
+			</div>
+		 </div>
+	</nav>
+
+	<div class='container-fluid'>
+		<div class="row">
+			<div id="panelleft" class="col-md-3 col-lg-2 ">
+				<div class="panel-group">
+				  <div class="group-heading">
+					  <h3 class="panel-title">Filtres <span class="glyphicon glyphicon-filter"></span> </h3>
+					</div>
+
+				  <div id="panfilter_0" class="panel panel-primary">
+					<div class="panel-heading">
+					  <h1 class="panel-title">
+						<a data-toggle="collapse" href="#colfilter_0" >Bailleur <span class="badge"></span> </a>
+					  </h1>
+					</div>
+					<div id="colfilter_0" class="panel-collapse panel-filter collapse">
+					 
+					</div>
+				  </div>
+				  <div id="panfilter_1" class="panel panel-primary">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" href="#colfilter_1"  >Organisation <span class="badge"></span></a>
+						  </h4>
+						</div>
+						<div id="colfilter_1" class="panel-collapse panel-filter collapse">
+						  	
+						</div>
+				  </div>
+				  <div id="panfilter_2" class="panel panel-primary">
+						<div class="panel-heading">
+						  <h4 class="panel-title">
+							<a data-toggle="collapse" href="#colfilter_2"  >Domaines <span class="badge"></span></a>
+						  </h4>
+						</div>
+						<div id="colfilter_2" class="panel-collapse panel-filter collapse">
+						  	
+						</div>
+				  </div>				  
+					  <template id="datalist-template">
+						 <div class="checkbox">
+								<label ><input data-id="{{0}}" type="checkbox" value="">{{0}}</label> 
+						 </div>
+					  </template>
+					  <template id="imglist-template">
+						 <div class="checkbox">
+							
+							<label ><input data-id="{{0}}" type="checkbox" value=""> {{0}}<img src="icons/{{1}}.png" alt=".." class="img-list"></label> 
+						 </div>
+					  </template>  
+				</div>				  
+			</div>							
+			<div class="col-md-9 col-lg-10" id="map-canvas"></div>
+		</div>	
+  
+	</div>
+  
+
+  	<!-- Latest compiled and minified CSS (CDN ) -->
+	<link rel="stylesheet" type="text/css" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	
+	<link rel="stylesheet" type="text/css" href="css/custom.css">
+	
+	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   
+	<!-- Latest compiled and minified JavaScript -->
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+	<script type="text/javascript" src="http://maps.google.com/maps/api/js?key=AIzaSyCzlOw9aUtvvPLo4q62S9n038B6nPrqIrQ"></script>
+	
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
+	
+
+	<script>
+	
+	 $(window).resize(function () {
+          var h = $(window).height(),
+            offsetTop = 105; // Calculate the top offset
+        
+          $('#map-canvas').css('height', (h - offsetTop));
+        }).resize();
+
+
+	$(function(){
+	var map;
+    var layer_0;
+    var layer_1;
+	var colfilter_name={col0:"'Bailleur'",col1:"'Organisation *'",col2:"'Sous-Secteur'",col3:"'Map Icon'" };
+	var colselect_0="geometry";
+	var colselect_1="Address";
+	var FusionTable_0="1W7EIJLpZaQx3pv6pddK0ttB2As9OmtgUDzfyL6IM";
+	var FusionTable_1="1Nee6YfsVvcrHXOT8lWj8a5mOn9DmTA0B0C1PjOuh";
+	var googleapikey="AIzaSyCzlOw9aUtvvPLo4q62S9n038B6nPrqIrQ";
+	var colfilter_where={sqlWhere0:'',sqlWhere1:'',sqlWhere2:'' };
+
+	var whereClause;
+	var searchrecords = null;
+	
+	   map = new google.maps.Map(document.getElementById('map-canvas'), {
+        center: new google.maps.LatLng(10.936234188252923, 14.513156320117105),
+        zoom: 9
+      });
+      var style = [
+        {
+          featureType: 'all',
+          elementType: 'all',
+          stylers: [
+            { saturation: 99 }
+          ]
+        }
+      ];
+      var styledMapType = new google.maps.StyledMapType(style, {
+        map: map,
+        name: 'Styled Map'
+      });
+      map.mapTypes.set('map-style', styledMapType);
+      map.setMapTypeId('map-style');
+      layer_0 = new google.maps.FusionTablesLayer({
+        query: {
+          select: colselect_0, 
+          from: FusionTable_0
+        },
+        map: map,
+        styleId: 2,
+        templateId: 2
+      });
+      layer_1 = new google.maps.FusionTablesLayer({
+        query: {
+          select: colselect_1, 
+          from: FusionTable_1
+        },
+        map: map,
+        styleId: 3,
+        templateId: 3
+      });
+
+		var $colfilter0=$(colfilter_0);	  
+	   	var $colfilter1=$(colfilter_1);
+		var $colfilter2=$(colfilter_2);		
+		//template for check list
+		var chkTemplate=$('#datalist-template').html();
+		var imgTemplate=$('#imglist-template').html();
+		
+		function divInitializer(divid, chkTemplateHTML, data){
+		 divid.append(Mustache.render(chkTemplateHTML,data));	
+		}
+		
+		var sqlGetQuery;
+		var nrows={n0:0,n1:0,n2:0};
+	
+		var $divparent=$colfilter1.parent().attr('id');
+		var $posttitle1=$('#'+$divparent+ ' a span');
+		//Get list 1 of Organisation
+		sqlGetQuery='sql=SELECT '+colfilter_name['col1']+' FROM 1Nee6YfsVvcrHXOT8lWj8a5mOn9DmTA0B0C1PjOuh GROUP BY '+colfilter_name['col1']+' ORDER BY '+colfilter_name['col1'];
+		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey
+		listInitializer(sqlGetQuery,$colfilter1,colfilter_name['col1'],$posttitle1,chkTemplate);	
+
+	   	//Get list 0 of donor
+		var $posttitle0=$('#'+$colfilter0.parent().attr('id')+ ' a span');
+	
+		sqlGetQuery='sql=SELECT '+colfilter_name['col0']+' FROM 1Nee6YfsVvcrHXOT8lWj8a5mOn9DmTA0B0C1PjOuh GROUP BY '+colfilter_name['col0']+' ORDER BY '+colfilter_name['col0'];
+		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey
+		listInitializer(sqlGetQuery,$colfilter0,colfilter_name['col0'],$posttitle0,chkTemplate);	   
+
+	   	//Get list 2 of Intervention
+		var $posttitle2=$('#'+$colfilter2.parent().attr('id')+ ' a span');
+	
+		sqlGetQuery='sql=SELECT '+colfilter_name['col2']+', '+colfilter_name['col3']+' FROM 1Nee6YfsVvcrHXOT8lWj8a5mOn9DmTA0B0C1PjOuh GROUP BY '+colfilter_name['col2']+','+colfilter_name['col3']+' ORDER BY '+colfilter_name['col2'];
+		console.log(sqlGetQuery);
+		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey
+		listInitializer(sqlGetQuery,$colfilter2,colfilter_name['col2'],$posttitle2,imgTemplate);	
+
+		
+     function listInitializer(jsonQuery,colfilter,colfiltername,posttitle,htmlTemplate){
+		var colId=colfilter.attr('id');
+		var lastChar = colId.substr(colId.length - 1);
+		var nrow=0;
+		$.ajax({
+			type:'GET',
+			url:jsonQuery ,
+			dataType: 'jsonp',
+			success:function (datalist){
+				 $.each(datalist["rows"], function(i,item){
+				 divInitializer(colfilter,htmlTemplate,item);
+				 nrow++;
+				})				
+				nrows['n'+lastChar]=nrow;
+				//modify title	
+				posttitle.html(' '+nrow+' ');	
+			},
+			error: function(){
+				alert('Error on load '+colfiltername+' list');
+			}
+		});	 
+	 }		
+	  //Add listener to update map base on selected items 
+	   var $panelgroup= $('.panel-group');	 
+	  $panelgroup.delegate('.panel .panel-collapse .checkbox input','click',doSearch);
+	  
+	  function doSearch(){  
+		//Get the id panel clicked to determine the column for search
+		var panel=$(this).closest('.panel-collapse');
+	    var panelid=panel.attr('id');
+		var item_selected=$("#"+panelid+ " .checkbox input").filter(":checked");
+		var nb_selected=item_selected.length;
+		var divparent=$('#'+panelid).parent().attr('id');
+		var $posttitle=$('#'+divparent+ ' a span');		
+
+		//Get column name - search based on panelid	
+		var lastChar = panelid.substr(panelid.length - 1);
+		var type_column=colfilter_name['col'+lastChar];
+
+		var tempWhereClause = [];
+		var tempWhere='';
+		var and;
+			for (var i = 0; i < nb_selected; i++){
+				itemid=item_selected.eq(i).attr("data-id");
+			//	console.log(item_selected.eq(i).attr('id'))	;
+				itemid.replace(/'/g, "\\'");	
+				tempWhereClause.push(itemid); 	
+			}
+		// whereClause = " " + type_column + " not equal to ''";
+		if (nb_selected>0){
+			tempWhere="" + type_column + " IN ('" + tempWhereClause.join("','") + "')";	
+		}
+		else {   
+		 //$("#"+panelid).collapse("toggle");
+		}
+				
+		colfilter_where["sqlWhere"+lastChar]=tempWhere;
+		nb_selected=(nb_selected>0)?nb_selected:nrows['n'+lastChar];
+		
+		whereClause=doAnd(colfilter_where["sqlWhere0"],colfilter_where["sqlWhere1"]);
+		whereClause=doAnd(whereClause,colfilter_where["sqlWhere2"]);
+		$posttitle.html(' '+nb_selected+' ');
+		changeMap(1);	  
+	}
+		function doAnd(sql1,sql2){
+			var and= (sql1.length*sql2.length>0)?' AND ':'';
+			return sql1+and+sql2;
+		}
+	   
+		function changeMap(idMap){	  
+			var selectCol=(idMap=0)?colselect_0:colselect_1;
+			var layerActive=(idMap=0)?layer_0:layer_1;
+			var fromTable=(idMap=0)?FusionTable_0:FusionTable_1;
+		  
+			layerActive.setOptions({
+				query: {
+				  select: selectCol,
+				  from: fromTable,
+				  where: whereClause
+				}, 
+			}); 
+		}   
+	});
+	
+	
+	function clearSearch() {
+	}
+	
+	</script>
+  </body>
+</html>
