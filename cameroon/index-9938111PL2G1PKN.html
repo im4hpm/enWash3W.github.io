@@ -22,20 +22,20 @@
 				<span class="icon-bar"></span>
 				<span class="icon-bar"></span>
 			  </button>
-			  <a class="navbar-brand" href="#">CAMEROON - PARTNERS MAPPING</a>
+			  <a class="navbar-brand" href="#">CAMEROON - PARTNERS AND ACTIVITY MAPPING</a>
 			</div>
 			
 			<!-- Collect the nav links, forms, and other content for toggling -->
 			<div id="navbarcontent" class="collapse navbar-collapse" >
 				<ul class="nav navbar-nav navbar-right">
-					<li class="dropdown ">
+					<li class="dropdown sr-only">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="true"> Region<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 						<li><a href="#">Extreme Nord</a></li>
 						</ul>
 						
 					</li>
-					<li class="dropdown  ">
+					<li class="dropdown  sr-only">
 						<a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false">Secteur<span class="caret"></span></a>
 						<ul class="dropdown-menu">
 							<li> <a href="#"> WASH</a></li>
@@ -48,40 +48,58 @@
 	</nav>
 	<div class='container-fluid'>
 		<div class='row'>
-			<div class="col-xs-12 col-sm-12 col-md-12 col-lg-12" id="map-canvas"></div>		
-			<div id="paneltopright" >				  
+			<div class="col-md-7 col-lg-7" id="map-canvas"></div>		
+			<div class="col-md-5 col-lg-5 " id="panelright" >
+				  <div class="container"></div>
+					<div><iframe width="100%" height="400" scrolling="no" frameborder="no" src="https://fusiontables.google.com/embedviz?containerId=googft-gviz-canvas&amp;viz=GVIZ&amp;t=GRAPH&amp;gc=true&amp;gd=false&amp;sdb=1&amp;rmax=100000&amp;q=select+col2%3E%3E0%2C+col8%3E%3E0%2C+col17%3E%3E0+from+1X1apbhBgsBZ3SbNwq2aFe0kWkieNNWeYYITYIDhO&amp;qrs=+where+col2%3E%3E0+%3E%3D+&amp;qre=+and+col2%3E%3E0+%3C%3D+&amp;qe=&amp;uiversion=2&amp;state=%7B%22ps%22%3A%221_4_4k_-w_c_5v_-m_1_16_-k_7_26_-n_3_3v_-f_0_s_-14_b_m_-6_8_20_-1l_2_16_g_9_24_i_6_49_9_5_3s_x_a_2g_y_%22%2C%22cx%22%3A147.92139308124487%2C%22cy%22%3A-27.473625143333305%2C%22sw%22%3A593.7214630528027%2C%22sh%22%3A264.567886550397%2C%22z%22%3A1.4980603326006674%7D&amp;gco_forceIFrame=false&amp;gco_hasLabelsColumn=true&amp;width=800&amp;height=500"></iframe>
+					</div>
 				<div class='row'>	
-					  	<!-- Menu -->  
-						<div id="panfilter" class="panel panel-info">  
-							<div class="panel-heading ">
+					<div class="panel-group">
+					  <div class="group-heading">
+						  <h3 class="panel-title">Filtres <span class="glyphicon glyphicon-filter"></span> </h3>
+						</div>
+
+					  <div id="panfilter_0" class="panel panel-primary">
+						<div class="panel-heading">
+						  <h1 class="panel-title">
+							<a data-toggle="collapse" href="#colfilter_0" >Bailleur <span class="badge"></span> </a>
+						  </h1>
+						</div>
+						<div id="colfilter_0" class="panel-collapse panel-filter collapse">
+						 
+						</div>
+					  </div>
+					  <div id="panfilter_1" class="panel panel-primary">
+							<div class="panel-heading">
 							  <h4 class="panel-title">
-								<a data-toggle="collapse" href="#panmultifilter" >Filters <span class="glyphicon glyphicon-filter"></span></a>
+								<a data-toggle="collapse" href="#colfilter_1"  >Organisation <span class="badge"></span></a>
 							  </h4>
 							</div>
-							<div id="panmultifilter" class="panel-body" > 
-								<div class="selectgroup">
-								   <h4 >Bailleur <span class="badge">10</span></h4>
-									<select id="colmultiselect_0" class="selectpicker" multiple>
-									</select>
-								</div>
-								<div class="selectgroup">
-									<h4>Organisation <span class="badge">50</span></h4>
-									<select id="colmultiselect_1" class="selectpicker" multiple>
-									</select>
-								</div>
-								<div class="selectgroup">
-									<h4>Domaine <span class="badge">50</span></h4>
-									<select id="colmultiselect_2" class="selectpicker" multiple>
-									</select>
-								</div>
-									<template id="selectlist-template">  
-										<option data-id="{{0}}">{{0}}</option>
-									</template>
-									<template id="imgselectlist-template">  
-										<option data-id="{{0}}"><img src="icons/{{1}}.png" alt=".." class="img-list"> {{0}}</option>
-									</template>
+							<div id="colfilter_1" class="panel-collapse panel-filter collapse">
+								
 							</div>
-						</div>	
+					  </div>
+					  <div id="panfilter_2" class="panel panel-primary">
+							<div class="panel-heading">
+							  <h4 class="panel-title">
+								<a data-toggle="collapse" href="#colfilter_2"  >Domaine <span class="badge"></span></a>
+							  </h4>
+							</div>
+							<div id="colfilter_2" class="panel-collapse panel-filter collapse">
+								
+							</div>
+					  </div>				  
+						  <template id="datalist-template">
+							 <div class="checkbox">
+									<label ><input data-id="{{0}}" type="checkbox" value="">{{0}}</label> 
+							 </div>
+						  </template>
+						  <template id="imglist-template">
+							 <div class="checkbox">
+								<label ><input data-id="{{0}}" type="checkbox" value=""> {{0}}<img src="icons/{{1}}.png" alt=".." class="img-list"></label> 
+							 </div>
+						  </template>  
+					</div>	
 				</div>		
 			</div>	
 		</div>
@@ -92,27 +110,21 @@
 	
 	<link rel="stylesheet" type="text/css" href="css/custom.css">
 	<script type="text/javascript" src="https://maps.google.com/maps/api/js?key=AIzaSyCzlOw9aUtvvPLo4q62S9n038B6nPrqIrQ"></script>
-
+	
 	 <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>   
 	<!-- Latest compiled and minified JavaScript -->
-	
-<!-- Latest compiled and minified JavaScript -->
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/js/bootstrap-select.min.js"></script>
-		
 	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-	<!-- Latest compiled and minified CSS -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-select/1.11.0/css/bootstrap-select.min.css">
-		
+	
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/2.2.1/mustache.min.js"></script>
-
 	
 	<script>
 	
 	 $(window).resize(function () {
           var h = $(window).height(),
-            offsetTop = 60; // Calculate the top offset       
+            offsetTop = 60; // Calculate the top offset
+        
           $('#map-canvas').css('height', (h - offsetTop));
         }).resize();
 
@@ -121,7 +133,7 @@
 		var layer_0;
 		var layer_1;
 		var colfilter_name1={col0:"'Bailleur'",col1:"'Organisation *'",col2:"'Sous-Secteur'",col3:"'ImageIcon'" };
-		var colfilter_name0={col0:"'Bailleurs'",col1:"'Organisations'",col2:"",col3:""}; 
+		var colfilter_name0={col0:"'Bailleurs'",col1:"'Organisations'",col2:"x",col3:"y"};
 		
 		var colselect_0="geometry";
 		var colselect_1="Address";
@@ -132,7 +144,6 @@
 		var colfilter_where={sqlWhere0:'',sqlWhere1:'',sqlWhere2:'' };
 		var colfilter_where0={sqlWhere0:'',sqlWhere1:'',sqlWhere2:'' };
 		
-		var defaulttitle="Nothing selected"; //default value for all multiselect elements
 		var whereClause;
 		var searchrecords = null;
 	
@@ -176,16 +187,12 @@
         templateId: 2
       });
 
-		var $colfilter0=$(colmultiselect_0);	  
-	   	var $colfilter1= $(colmultiselect_1); //$(colfilter_1);
-		var $colfilter2=$(colmultiselect_2);
-			
-	
+		var $colfilter0=$(colfilter_0);	  
+	   	var $colfilter1=$(colfilter_1);
+		var $colfilter2=$(colfilter_2);		
 		//template for check list
-		var chkTemplate=$('#selectlist-template').html(); //$('#datalist-template').html();
-		var imgTemplate=$('#imgselectlist-template').html(); // $('#imglist-template').html();
-		//var selectTemplate=$('#select-template').html();
-
+		var chkTemplate=$('#datalist-template').html();
+		var imgTemplate=$('#imglist-template').html();
 		
 		function divInitializer(divid, chkTemplateHTML, data){
 		 divid.append(Mustache.render(chkTemplateHTML,data));	
@@ -199,9 +206,7 @@
 		//Get list 1 of Organisation
 		sqlGetQuery='sql=SELECT '+colfilter_name1['col1']+' FROM '+FusionTable_1+' GROUP BY '+colfilter_name1['col1']+' ORDER BY '+colfilter_name1['col1'];
 		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey
-		listInitializer(sqlGetQuery,$colfilter1,colfilter_name1['col1'],$posttitle1,chkTemplate);
-		
-		//listInitializer(sqlGetQuery,$(colmultiselect_1),colfilter_name1['col1'],$posttitle1,selectTemplate);	   
+		listInitializer(sqlGetQuery,$colfilter1,colfilter_name1['col1'],$posttitle1,chkTemplate);	
 
 	   	//Get list 0 of donor
 		var $posttitle0=$('#'+$colfilter0.parent().attr('id')+ ' a span');
@@ -209,7 +214,6 @@
 		sqlGetQuery='sql=SELECT '+colfilter_name1['col0']+' FROM '+FusionTable_1+' GROUP BY '+colfilter_name1['col0']+' ORDER BY '+colfilter_name1['col0'];
 		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey
 		listInitializer(sqlGetQuery,$colfilter0,colfilter_name1['col0'],$posttitle0,chkTemplate);	   
-		//listInitializer(sqlGetQuery,$(colmultiselect_0),colfilter_name1['col0'],$posttitle0,selectTemplate);	   
 
 	   	//Get list 2 of domains
 		var $posttitle2=$('#'+$colfilter2.parent().attr('id')+ ' a span');
@@ -219,10 +223,7 @@
 		sqlGetQuery='https://www.googleapis.com/fusiontables/v2/query?'+sqlGetQuery+'&key='+googleapikey;
 		listInitializer(sqlGetQuery,$colfilter2,colfilter_name1['col2'],$posttitle2,imgTemplate);	
 
-			/*$colfilter0.parent().removeClass("hide");
-			$colfilter1.parent().removeClass("hide");
-			$colfilter2.parent().removeClass("hide");		*/
-	
+		
      function listInitializer(jsonQuery,colfilter,colfiltername,posttitle,htmlTemplate){
 		var colId=colfilter.attr('id');
 		var lastChar = colId.substr(colId.length - 1);
@@ -246,154 +247,10 @@
 		});	 
 	 }		
 	  //Add listener to update map base on selected items 
-	   var $panelgroup= $('#panfilter');	 
-	  // $panelgroup.delegate('.selectpicker','click',doSearch);
-	   
-	   $panelgroup.delegate('.panel .panel-body .selectgroup .btn-group btn','onchange',doSearch);
-	 	function doSearch(){  
-		//Get the id panel clicked to determine the column for search
-		//var panel=$(this).parent().attr('id'); parent is select ;
-	    var panelid=$(this).parent().attr('id'); // select id ;
-	   
-	   
-  	    var $parent=$(this).parent();
-		var parentid=$parent.attr('id');
-		
-		//find buttun element and get title attribute that contains selected values
-		var item_selected=$(this).siblings('button').attr('title');  //$("#"+parentid+ " .checkbox input").filter(":checked");
-		//remove default value in the title
-		item_selected=item_selected.replace(defaulttitle,'');
-		console.log(item_selected);
-		var nb_selected=item_selected.length;
-		
-		//find bagde text area to display # selected items
-		var $badgetext=$parent.siblings().find('.badge');		//$('#'+divparent+ ' a span');		
-		//Get column name - search based 	
-		var lastChar = parentid.substr(parentid.length - 1);
-		var type_column1=colfilter_name1['col'+lastChar];
-		var type_column0=colfilter_name0['col'+lastChar];
-
-		var tempWhereClause = [];
-		var tempWhere1='';
-		var tempWhere0='';
-
-		var and;
-			/*for (var i = 0; i < nb_selected; i++){
-				itemid=item_selected.eq(i).attr("data-id");
-			//	console.log(item_selected.eq(i).attr('id'))	;
-				itemid.replace(/'/g, "\\'");	
-				tempWhereClause.push(itemid); 	
-			}*/
-		tempWhereClause=item_selected.split(', ');
-		// whereClause = " " + type_column + " not equal to ''";
-		if (nb_selected>0){
-			tempWhere1="" + type_column1 + " IN ('" + tempWhereClause.join("','") + "')";	
-			tempWhere0="" + type_column0+" CONTAINS IGNORING CASE '"+ tempWhereClause.join("' AND "+ type_column0+" CONTAINS IGNORING CASE '") + "'";
-		//tempWhere0="" + type_column0+" CONTAINS IGNORING CASE '"+ tempWhereClause.join("'")+"'";
-			console.log(tempWhere0);
-			
-		}
-		else {   
-		 //$("#"+panelid).collapse("toggle");
-		}
-				
-		colfilter_where["sqlWhere"+lastChar]=tempWhere1;
-		nb_selected=(nb_selected>0)?nb_selected:nrows['n'+lastChar];
-		
-		whereClause=doAnd(colfilter_where["sqlWhere0"],colfilter_where["sqlWhere1"]);
-		whereClause=doAnd(whereClause,colfilter_where["sqlWhere2"]);
-		$badgetext.html(' '+nb_selected+' ');
-		changeMap(1);
-		whereClause=tempWhere0;
-		console.log(whereClause);
-
-		changeMap(0);
-
-	} 
-
-		function doAnd(sql1,sql2){
-			var and= (sql1.length*sql2.length>0)?' AND ':'';
-			return sql1+and+sql2;
-		}
-	   
-		function changeMap(idMap){	  
-			var selectCol=(idMap>0)?colselect_1:colselect_0;
-			var layerActive=(idMap>0)?layer_1:layer_0;
-			var fromTable=(idMap>0)?FusionTable_1:FusionTable_0;
-		  console.log(selectCol);
-			layerActive.setOptions({
-				query: {
-				  select: selectCol,
-				  from: fromTable,
-				  where: whereClause
-					}, 
-			}); 
-		}
-		
-		
-		var feedTemplate=$('#feed-template').html();
-		var  url ='http://reliefweb.int/country/cmr/rss.xml?primary_country=49&theme=4604';
-		  
-		 feedreader();
-		  
-		 function feedreader(feedurl,containerid,feedtemplate){
-				$.ajax({
-				type: "GET",
-				url:'https://ajax.googleapis.com/ajax/services/feed/load?v=1.0&num=1000&callback=?&q=' + encodeURIComponent(feedurl),
-				dataType: 'json',
-				error: function(){
-					alert('Unable to load feed, Incorrect path or invalid feed');
-				},
-				success: function(xml){
-					values = xml.responseData.feed.entries;
-					
-					$.each(values,function(index, item) {
-	
-					//Remove duplicated text in title
-					var tabvalue=item.title.split(':'); //item.title.substring(0,18);
-					var title=item.title;
-					if (tabvalue.length>2) {
-					 console.log(tabvalue[0].toLowerCase().trim() +'/' +tabvalue[1].toLowerCase().trim());
-					  if (tabvalue[0].toLowerCase().trim()===tabvalue[1].toLowerCase().trim()){
-					  // console.log(tabvalue[0] +'/'+index+'/'+tabvalue[0].toLowerCase().trim());
-					   title=item.title.substr(tabvalue[0].length+1).trim();
-					   console.log(title);
-					  }
-					}
-				//	console.log(tabvalue);
-					var data = {
-						title:   title,
-						link:    item.link,
-						content: item.content,
-						contentSnippet:item.contentSnippet,
-						pubDate:     item.publishedDate,
-						author:      item.author
-					};
-					if (index<10) {
-					//$('#content-div').append(Mustache.render(feedTemplate,data));
-					containerid.append(Mustache.render(feedtemplate,data));
-					}
-					
-				
-				});
-				
-					$(".demo2").bootstrapNews({
-						newsPerPage: 2,
-						autoplay: true,
-						pauseOnHover: true,
-						navigation: false,
-						direction: 'up',
-						newsTickerInterval: 4000,
-						onToDo: function () {
-						  //  console.log(this);
-						}
-					});
-				}
-					
-			});	
-		}
-
-	function doSearchXX(){  
+	   var $panelgroup= $('.panel-group');	 
+	  $panelgroup.delegate('.panel .panel-collapse .checkbox input','click',doSearch);
+	  
+	  function doSearch(){  
 		//Get the id panel clicked to determine the column for search
 		var panel=$(this).closest('.panel-collapse');
 	    var panelid=panel.attr('id');
@@ -421,10 +278,7 @@
 		// whereClause = " " + type_column + " not equal to ''";
 		if (nb_selected>0){
 			tempWhere1="" + type_column + " IN ('" + tempWhereClause.join("','") + "')";	
-			tempWhere0="" + type_column0+" CONTAINS IGNORING CASE '"+ tempWhereClause.join("' AND "+ type_column0+" CONTAINS IGNORING CASE '") + "'";
-		//tempWhere0="" + type_column0+" CONTAINS IGNORING CASE '"+ tempWhereClause.join("'")+"'";
-			console.log(tempWhere0);
-			
+		//	tempWhere0="(" + type_column0+" CONTAINS IGNORING CASE "+ tempWhereClause.join("') OR ('"+ type_column0+" CONTAINS IGNORING CASE ") + "')";
 		}
 		else {   
 		 $("#"+panelid).collapse("toggle");
@@ -436,14 +290,26 @@
 		whereClause=doAnd(colfilter_where["sqlWhere0"],colfilter_where["sqlWhere1"]);
 		whereClause=doAnd(whereClause,colfilter_where["sqlWhere2"]);
 		$posttitle.html(' '+nb_selected+' ');
-		changeMap(1);
-		whereClause=tempWhere0;
-		console.log(whereClause);
-
-		changeMap(0);
-
+		changeMap(1);	  
 	}
-
+		function doAnd(sql1,sql2){
+			var and= (sql1.length*sql2.length>0)?' AND ':'';
+			return sql1+and+sql2;
+		}
+	   
+		function changeMap(idMap){	  
+			var selectCol=(idMap=0)?colselect_0:colselect_1;
+			var layerActive=(idMap=0)?layer_0:layer_1;
+			var fromTable=(idMap=0)?FusionTable_0:FusionTable_1;
+		  
+			layerActive.setOptions({
+				query: {
+				  select: selectCol,
+				  from: fromTable,
+				  where: whereClause
+				}, 
+			}); 
+		}   
 	});
 	
 	
